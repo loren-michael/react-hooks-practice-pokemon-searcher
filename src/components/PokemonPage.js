@@ -16,24 +16,24 @@ function PokemonPage() {
 
   const filteredPokemon = pokemon.filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
 
-  function onSearchChange(str) {
-    console.log(str)
+  function handleAddPokemon(newPokemon) {
+    setPokemon([...pokemon, newPokemon])
   }
 
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm />
+      <PokemonForm onAddPokemon={handleAddPokemon} />
       <br />
-      <Search search={search} />
+      <Search 
+        search={search}
+        setSearch={setSearch}
+      />
       <br />
       <PokemonCollection 
         pokemon={filteredPokemon} 
         setPokemon={setPokemon}
-        search={search}
-        setSearch={setSearch}
-        onSearchChange={onSearchChange}
       />
     </Container>
   );
